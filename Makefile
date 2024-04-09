@@ -5,10 +5,10 @@ CC = gcc
 CFLAGS = -Wall 
 
 # Source files
-SRCS = main.c
+SRCS = kopier.c SFinfo.c main.c
 
 # Target executable
-TARGET = solver
+TARGET = solver.out
 
 # Default target
 all:
