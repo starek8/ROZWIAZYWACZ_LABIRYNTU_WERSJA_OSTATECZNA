@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
+#include "kopier.h"
+#include "SFinfo.h"
 
 int main (int argc, char *argv[]) {
 
@@ -13,22 +15,13 @@ int main (int argc, char *argv[]) {
         return 1;
     }
 
-    FILE *file = fopen(argv[1], "r");
+    FILE *file = fopen(argv[1], "rb");
     if (file == NULL) {
         printf("Nie udało się otworzyć pliku!\nKoniec działania programu\n");
         return 1;
     }
 
-    if(strcmp(argv[1] + strlen(argv[1]) - 3, "bin") == 0){
-        printf("bin\n");
-        // tu idzie kod dla bin
-    } else if(strcmp(argv[1] + strlen(argv[1]) - 3, "txt") == 0){
-        printf("txt\n");
-        // tu idzie kod dla txt
-    } else {
-        printf("Nieobsługiwany plik!\nKoniec działania programu\n");
-        return 1;
-    }
+    close(file);
 
     //zmienne potrzebne do działania
     int szerokosc = 0;
@@ -39,7 +32,40 @@ int main (int argc, char *argv[]) {
     int koniec_y = 0;
 
 
+    if(strcmp(argv[1] + strlen(argv[1]) - 3, "bin") == 0){
+        printf("Typ pliku żródłowego: bin\n");
+        // tu idzie kod dla bin
+    } else if(strcmp(argv[1] + strlen(argv[1]) - 3, "txt") == 0){
+        printf("Typ pliku żródłowego: txt\n");
+        // tu idzie kod dla txt
 
+        //krok 1 - stworzenie kopii roboczej pliku źródłowego
+        kopier(argv[1]);
+
+        //krok 2 - wyciągnięcie informacji na temat labiryntu
+        szerokosc = sprawdz_szerokosc(argv[1]);
+        wysokosc = sprawdz_wysokosc(argv[1]);
+
+        printf("Szerokość: %d\nWysokość: %d\n", szerokosc, wysokosc);
+
+        znajdz_konce("working_copy.txt", szerokosc, wysokosc, &start_x, &start_y, &koniec_x, &koniec_y);
+
+        printf("Start: %d %d\n", start_x, start_y);
+        printf("Koniec: %d %d\n", koniec_x, koniec_y);
+
+        //krok 3 - utworzenie pliku bin
+
+        
+    } else {
+        printf("Nieobsługiwany plik!\nKoniec działania programu\n");
+        return 1;
+    }
+
+    //rozwiązanie labiryntu
+    
+
+
+    remove("working_copy.txt");
     printf ("Czas wykonania: %f\n", ((double)clock() - start) / CLOCKS_PER_SEC);
     return 0;
 }
