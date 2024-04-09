@@ -3,4 +3,4 @@
 
 void kopier(char *nazwa_pliku_zrodlowego);
 
-#endif 
+#endif

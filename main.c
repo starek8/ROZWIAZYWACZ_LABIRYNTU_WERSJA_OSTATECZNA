@@ -4,6 +4,8 @@
 #include <time.h>
 #include "kopier.h"
 #include "SFinfo.h"
+#include "sf_to_bin.h"
+#include "bin_to_sf.h"
 
 int main (int argc, char *argv[]) {
 
@@ -35,6 +37,21 @@ int main (int argc, char *argv[]) {
     if(strcmp(argv[1] + strlen(argv[1]) - 3, "bin") == 0){
         printf("Typ pliku żródłowego: bin\n");
         // tu idzie kod dla bin
+        
+        //krok 1 stowrzenie working copy
+        FILE * working_copy = StworzSf(file);
+
+        // krok 2 wyciagniecie informacji
+        szerokosc = sprawdz_szerokosc(working_copy);
+        wysokosc = sprawdz_wysokosc(working_copy);
+
+        printf("Szerokość: %d\nWysokość: %d\n", szerokosc, wysokosc);
+
+        znajdz_konce("working_copy.txt", szerokosc, wysokosc, &start_x, &start_y, &koniec_x, &koniec_y);
+
+        printf("Start: %d %d\n", start_x, start_y);
+        printf("Koniec: %d %d\n", koniec_x, koniec_y);
+
     } else if(strcmp(argv[1] + strlen(argv[1]) - 3, "txt") == 0){
         printf("Typ pliku żródłowego: txt\n");
         // tu idzie kod dla txt
@@ -55,6 +72,8 @@ int main (int argc, char *argv[]) {
 
         //krok 3 - utworzenie pliku bin
 
+        FILE *bin_do_oddania = StworzBin("working_copy.txt", szerokosc, wysokosc, start_x, start_y, koniec_x, koniec_y, 0); 
+        //solution ofset na 0 narazie
         
     } else {
         printf("Nieobsługiwany plik!\nKoniec działania programu\n");
