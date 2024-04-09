@@ -13,17 +13,24 @@ int main (int argc, char *argv[]) {
         return 1;
     }
 
-    FILE *file = fopen(argv[1], "r");
-    if (file == NULL) {
-        printf("Nie udało się otworzyć pliku!\nKoniec działania programu\n");
-        return 1;
-    }
-
     if(strcmp(argv[1] + strlen(argv[1]) - 3, "bin") == 0){
         printf("bin\n");
+
+        FILE *file = fopen(argv[1], "rb"); // musialem tu zmienic na "rb" 
+        if (file == NULL) {
+            printf("Nie udało się otworzyć pliku!\nKoniec działania programu\n"); 
+        return 1;
+        }
         // tu idzie kod dla bin
+        
     } else if(strcmp(argv[1] + strlen(argv[1]) - 3, "txt") == 0){
         printf("txt\n");
+
+        FILE *file = fopen(argv[1], "r");
+        if (file == NULL) {
+            printf("Nie udało się otworzyć pliku!\nKoniec działania programu\n");
+        return 1;
+        }
         // tu idzie kod dla txt
     } else {
         printf("Nieobsługiwany plik!\nKoniec działania programu\n");
