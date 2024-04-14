@@ -5,6 +5,7 @@
 #include "kopier.h"
 #include "SFinfo.h"
 #include "flooder.h"
+#include "follower.h"
 #include "sf_to_bin.h"
 #include "bin_to_sf.h"
 
