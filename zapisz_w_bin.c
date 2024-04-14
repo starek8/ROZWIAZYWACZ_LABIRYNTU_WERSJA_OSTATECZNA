@@ -2,8 +2,6 @@
 
 void rozpocznij_zapis_w_bin(FILE *bin)
 {
-    fseek(bin, 0, SEEK_END);
-
     int FILE_ID = 0x52524243; //hard-code file_id
     char ste = 0;
     fwrite(&FILE_ID, 4, 1, bin);
@@ -12,13 +10,15 @@ void rozpocznij_zapis_w_bin(FILE *bin)
 
 void zapisz_steps(FILE *bin, int steps)
 {
-    long ile =(int)steps * (-1);
+    long ile =(int)steps * (-1) - 4;
     char ste =(char)steps;
-    fseek(bin, ile, SEEK_END);
+    fseek(bin, -13, SEEK_END);
+    fwrite(&steps, 1,1,bin);
 }
 
 void zapisz_krok(FILE *bin, char kierunek, int liczba_krokow)
 {
+    fseek(bin, 0, SEEK_END);
     unsigned char max = 255;
 
     if(liczba_krokow <= 255)
@@ -116,3 +116,28 @@ void zapisz_krok(FILE *bin, char kierunek, int liczba_krokow)
 
 
 }
+
+/*int main (int argc, char * argv[])
+{
+
+    FILE *bin = fopen(argv[1], "a+");
+    if (argv[1] == NULL) 
+    {
+        printf("Nie udało się otworzyć pliku!\nKoniec działania programu\n");
+        return 1;
+    }
+
+   rozpocznij_zapis_w_bin(bin);
+
+    zapisz_krok(bin, 'N', 30);
+
+    zapisz_krok(bin, 'S', 270);
+
+    zapisz_krok(bin, 'W', 530);
+
+    
+
+    zapisz_steps(bin, 6);
+
+    return 0;
+}*/
