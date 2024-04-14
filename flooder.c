@@ -92,15 +92,8 @@ void flooder (int szerokosc, int wysokosc, int start_x, int start_y, int koniec_
     for (int i = 0; i < szerokosc; i++){
         tab[i] = (char *)malloc(3 * sizeof(char));
     }
-    
 
     int counter = 1;
-
-
-    printf("%d\n", wysokosc);
-    wczytaj_blok(tab, "working_copy.txt", szerokosc, 10);
-    wypisz_tablice(tab, szerokosc);
-
 
     while (counter != 0){
         counter = 0;
@@ -112,5 +105,5 @@ void flooder (int szerokosc, int wysokosc, int start_x, int start_y, int koniec_
         }
 
     }
-
+    free(tab);
 }
