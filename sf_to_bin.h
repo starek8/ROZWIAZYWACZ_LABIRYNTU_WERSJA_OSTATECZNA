@@ -1,5 +1,5 @@
-#ifndef BIN_TO_SF_H
-#define BIN_TO_SF_H
+#ifndef SF_TO_BIN_H
+#define SF_TO_BIN_H
 
 #include <stdio.h>
 #include <stdlib.h>

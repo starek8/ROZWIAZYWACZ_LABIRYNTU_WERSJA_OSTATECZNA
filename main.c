@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 #include <time.h>
+#include <string.h>
 #include "kopier.h"
 #include "SFinfo.h"
 #include "flooder.h"
@@ -26,7 +26,7 @@ int main (int argc, char *argv[]) {
         return 1;
     }
 
-    close(file);
+    FILE *bin_do_oddania;
 
     //zmienne potrzebne do działania
     int szerokosc = 0;
@@ -42,15 +42,15 @@ int main (int argc, char *argv[]) {
         // tu idzie kod dla bin
 
          //krok 1 stowrzenie working copy
-        FILE * working_copy = StworzSf(file);
-
+        
+        FILE *working_copy = StworzSf(file);
         // krok 2 wyciagniecie informacji
-        szerokosc = sprawdz_szerokosc(working_copy);
-        wysokosc = sprawdz_wysokosc(working_copy);
+        szerokosc = sprawdz_szerokosc("sf.txt");
+        wysokosc = sprawdz_wysokosc("sf.txt");
 
         printf("Szerokość: %d\nWysokość: %d\n", szerokosc, wysokosc);
 
-        znajdz_konce("working_copy.txt", szerokosc, wysokosc, &start_x, &start_y, &koniec_x, &koniec_y);
+        znajdz_konce("sf.txt", szerokosc, wysokosc, &start_x, &start_y, &koniec_x, &koniec_y);
 
         printf("Start: %d %d\n", start_x, start_y);
         printf("Koniec: %d %d\n", koniec_x, koniec_y);
@@ -76,7 +76,7 @@ int main (int argc, char *argv[]) {
 
         //krok 3 - utworzenie pliku bin
 
-        FILE *bin_do_oddania = StworzBin("working_copy.txt", szerokosc, wysokosc, start_x, start_y, koniec_x, koniec_y); 
+        bin_do_oddania = StworzBin(file, szerokosc, wysokosc, start_x, start_y, koniec_x, koniec_y); 
 
         
     } else {
@@ -88,12 +88,11 @@ int main (int argc, char *argv[]) {
 
     flooder(szerokosc, wysokosc, start_x, start_y, koniec_x, koniec_y);
 
-    follower(szerokosc, wysokosc, start_x, start_y, koniec_x, koniec_y);
-
-    
+    follower(bin_do_oddania, szerokosc, wysokosc, start_x, start_y, koniec_x, koniec_y);
 
 
-    //remove("working_copy.txt");
     printf ("Czas wykonania: %f\n", ((double)clock() - start) / CLOCKS_PER_SEC);
     return 0;
+
+
 }

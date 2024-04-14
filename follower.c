@@ -3,13 +3,18 @@
 #include <string.h>
 #include "flooder.h"
 #include "follower.h"
+#include "zapisz_w_bin.h"
 
 
-void follower(int szerokosc, int wysokosc, int start_x, int start_y, int koniec_x, int koniec_y){
+void follower(FILE* bin, int szerokosc, int wysokosc, int start_x, int start_y, int koniec_x, int koniec_y){
     char **tab = (char **)malloc(szerokosc * sizeof(char *));
     for (int i = 0; i < szerokosc; i++){
         tab[i] = (char *)malloc(3 * sizeof(char));
     }
+
+    int steps = 0;
+
+    rozpocznij_zapis_w_bin(bin);
 
     int licznik_krokow = 0;
     char kierunek = 'N'; // N - północ, S - południe, W - zachód, E - wschód
@@ -51,12 +56,14 @@ void follower(int szerokosc, int wysokosc, int start_x, int start_y, int koniec_
                 x++;
             } else{
                 if (tab[x][2] != 'X'){
-                    printf("kierunek: %c %d\n", kierunek, licznik_krokow);
+                    zapisz_krok(bin, kierunek, licznik_krokow);
+                    steps++;
                     kierunek = 'S';
                     licznik_krokow = 0;
                     y++;
                 }else if(tab[x][0] != 'X'){
-                    printf("kierunek: %c %d\n", kierunek, licznik_krokow);
+                    zapisz_krok(bin, kierunek, licznik_krokow);
+                    steps++;
                     kierunek = 'N';
                     licznik_krokow = 0;
                     y--;
@@ -68,12 +75,14 @@ void follower(int szerokosc, int wysokosc, int start_x, int start_y, int koniec_
                 y++;
             } else{
                 if (tab[x-1][1] != 'X'){
-                    printf("kierunek: %c %d\n", kierunek, licznik_krokow);
+                    zapisz_krok(bin, kierunek, licznik_krokow);
+                    steps++;
                     kierunek = 'W';
                     licznik_krokow = 0;
                     x--;
                 } else if (tab[x+1][1] != 'X'){
-                    printf("kierunek: %c %d\n", kierunek, licznik_krokow);
+                    zapisz_krok(bin, kierunek, licznik_krokow);
+                    steps++;
                     kierunek = 'E';
                     licznik_krokow = 0;
                     x++;
@@ -85,12 +94,14 @@ void follower(int szerokosc, int wysokosc, int start_x, int start_y, int koniec_
                 y--;
             } else{
                 if (tab[x+1][1] != 'X'){
-                    printf("kierunek: %c %d\n", kierunek, licznik_krokow);
+                    zapisz_krok(bin, kierunek, licznik_krokow);
+                    steps++;
                     kierunek = 'E';
                     licznik_krokow = 0;
                     x++;
                 } else if (tab[x-1][1] != 'X'){
-                    printf("kierunek: %c %d\n", kierunek, licznik_krokow);
+                    zapisz_krok(bin, kierunek, licznik_krokow);
+                    steps++;
                     kierunek = 'W';
                     licznik_krokow = 0;
                     x--;
@@ -102,12 +113,14 @@ void follower(int szerokosc, int wysokosc, int start_x, int start_y, int koniec_
                 x--;
             } else{
                 if (tab[x][2] != 'X'){
-                    printf("kierunek: %c %d\n", kierunek, licznik_krokow);
+                    zapisz_krok(bin, kierunek, licznik_krokow);
+                    steps++;
                     kierunek = 'S';
                     licznik_krokow = 0;
                     y++;
                 } else if (tab[x][0] != 'X'){
-                    printf("kierunek: %c %d\n", kierunek, licznik_krokow);
+                    zapisz_krok(bin, kierunek, licznik_krokow);
+                    steps++;
                     kierunek = 'N';
                     licznik_krokow = 0;
                     y--;
@@ -116,6 +129,10 @@ void follower(int szerokosc, int wysokosc, int start_x, int start_y, int koniec_
         }
     }
 
-    printf("kierunek: %c %d\n", kierunek, licznik_krokow);
+    zapisz_krok(bin, kierunek, licznik_krokow);
+    steps++;
+
+    zapisz_steps(bin, steps);
+    
     free(tab);  
 }

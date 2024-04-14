@@ -1,5 +1,5 @@
-#ifndef KOPIER_H
-#define KOPIER_H
+#ifndef SFINFO_H
+#define SFINFO_H
 
 int sprawdz_szerokosc (char *nazwa_pliku);
 
