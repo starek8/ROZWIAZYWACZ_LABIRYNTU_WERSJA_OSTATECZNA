@@ -5,7 +5,7 @@ CC = gcc
 CFLAGS = -Wall 
 
 # Source files
-SRCS = kopier.c SFinfo.c main.c flooder.c
+SRCS = kopier.c SFinfo.c main.c flooder.c follower.c
 
 # Target executable
 TARGET = solver.out
