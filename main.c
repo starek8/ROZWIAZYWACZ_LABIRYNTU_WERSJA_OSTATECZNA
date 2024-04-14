@@ -9,6 +9,7 @@
 #include "sf_to_bin.h"
 #include "bin_to_sf.h"
 
+
 int main (int argc, char *argv[]) {
 
     clock_t start = clock();
@@ -86,6 +87,8 @@ int main (int argc, char *argv[]) {
     //rozwiązanie labiryntu
 
     flooder(szerokosc, wysokosc, start_x, start_y, koniec_x, koniec_y);
+
+    follower(szerokosc, wysokosc, start_x, start_y, koniec_x, koniec_y);
 
     
 
