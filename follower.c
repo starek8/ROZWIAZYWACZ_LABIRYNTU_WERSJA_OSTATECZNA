@@ -53,12 +53,12 @@ void follower(int szerokosc, int wysokosc, int start_x, int start_y, int koniec_
                 if (tab[x][2] != 'X'){
                     printf("kierunek: %c %d\n", kierunek, licznik_krokow);
                     kierunek = 'S';
-                    licznik_krokow = 1;
+                    licznik_krokow = 0;
                     y++;
                 }else if(tab[x][0] != 'X'){
                     printf("kierunek: %c %d\n", kierunek, licznik_krokow);
                     kierunek = 'N';
-                    licznik_krokow = 1;
+                    licznik_krokow = 0;
                     y--;
                 }
             }    
@@ -70,12 +70,12 @@ void follower(int szerokosc, int wysokosc, int start_x, int start_y, int koniec_
                 if (tab[x-1][1] != 'X'){
                     printf("kierunek: %c %d\n", kierunek, licznik_krokow);
                     kierunek = 'W';
-                    licznik_krokow = 1;
+                    licznik_krokow = 0;
                     x--;
                 } else if (tab[x+1][1] != 'X'){
                     printf("kierunek: %c %d\n", kierunek, licznik_krokow);
                     kierunek = 'E';
-                    licznik_krokow = 1;
+                    licznik_krokow = 0;
                     x++;
                 }
             }
@@ -87,12 +87,12 @@ void follower(int szerokosc, int wysokosc, int start_x, int start_y, int koniec_
                 if (tab[x+1][1] != 'X'){
                     printf("kierunek: %c %d\n", kierunek, licznik_krokow);
                     kierunek = 'E';
-                    licznik_krokow = 1;
+                    licznik_krokow = 0;
                     x++;
                 } else if (tab[x-1][1] != 'X'){
                     printf("kierunek: %c %d\n", kierunek, licznik_krokow);
                     kierunek = 'W';
-                    licznik_krokow = 1;
+                    licznik_krokow = 0;
                     x--;
                 }
             }
@@ -104,12 +104,12 @@ void follower(int szerokosc, int wysokosc, int start_x, int start_y, int koniec_
                 if (tab[x][2] != 'X'){
                     printf("kierunek: %c %d\n", kierunek, licznik_krokow);
                     kierunek = 'S';
-                    licznik_krokow = 1;
+                    licznik_krokow = 0;
                     y++;
                 } else if (tab[x][0] != 'X'){
                     printf("kierunek: %c %d\n", kierunek, licznik_krokow);
                     kierunek = 'N';
-                    licznik_krokow = 1;
+                    licznik_krokow = 0;
                     y--;
                 }
             }
