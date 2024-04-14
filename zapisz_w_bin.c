@@ -1,104 +1,117 @@
 #include "zapisz_w_bin.h"
 
-void rozpicznij(FILE *bin, int steps)
+void rozpocznij_zapis_w_bin(FILE *bin)
 {
     fseek(bin, 0, SEEK_END);
 
     int FILE_ID = 0x52524243; //hard-code file_id
-    char ste = (char)steps; 
+    char ste = 0;
     fwrite(&FILE_ID, 4, 1, bin);
     fwrite(&ste, 1, 1, bin); //miejce na counter 
 }
 
+void zapisz_steps(FILE *bin, int steps)
+{
+    long ile =(int)steps * (-1);
+    char ste =(char)steps;
+    fseek(bin, ile, SEEK_END);
+}
+
 void zapisz_krok(FILE *bin, char kierunek, int liczba_krokow)
 {
-
-    char max = 255;
+    unsigned char max = 255;
 
     if(liczba_krokow <= 255)
     {
-        char ilosc = (char)liczba_krokow;
-        fprintf(&kierunek, 1,1, bin);
-        fprintf(&ilosc,1,1,bin);
+        unsigned char ilosc = (unsigned char)liczba_krokow;
+        fwrite(&kierunek, 1,1, bin);
+        fwrite(&ilosc,1,1,bin);
     }else if(liczba_krokow > 255 && liczba_krokow <= 511)
     {
 
         liczba_krokow = liczba_krokow - 255;
+        unsigned char ilosc = (unsigned char)liczba_krokow;
 
-        fprintf(&kierunek, 1,1, bin);
-        fprintf(&max,1,1,bin);
+        fwrite(&kierunek, 1,1, bin);
+        fwrite(&max,1,1,bin);
 
-        fprintf(&kierunek, 1,1, bin);
-        fprintf(&liczba_krokow,1,1,bin);
+        fwrite(&kierunek, 1,1, bin);
+        fwrite(&liczba_krokow,1,1,bin);
         
     }else if (liczba_krokow > 511 && liczba_krokow <= 767)
     {
 
         liczba_krokow = liczba_krokow - 511;
+        unsigned char ilosc = (unsigned char)liczba_krokow;
 
         for(int i = 0; i< 2; i++){
-            fprintf(&kierunek, 1,1, bin);
-            fprintf(&max,1,1,bin);
+            fwrite(&kierunek, 1,1, bin);
+            fwrite(&max,1,1,bin);
         }
 
-        fprintf(&kierunek, 1,1, bin);
-        fprintf(&liczba_krokow,1,1,bin);
+        fwrite(&kierunek, 1,1, bin);
+        fwrite(&liczba_krokow,1,1,bin);
         
     }else if (liczba_krokow > 767 && liczba_krokow <= 1023)
     {
         liczba_krokow = liczba_krokow - 767;
+        unsigned char ilosc = (unsigned char)liczba_krokow;
 
         for(int i = 0; i< 3; i++){
-            fprintf(&kierunek, 1,1, bin);
-            fprintf(&max,1,1,bin);
+            fwrite(&kierunek, 1,1, bin);
+            fwrite(&max,1,1,bin);
         }
 
-        fprintf(&kierunek, 1,1, bin);
-        fprintf(&liczba_krokow,1,1,bin);
+        fwrite(&kierunek, 1,1, bin);
+        fwrite(&liczba_krokow,1,1,bin);
     }else if (liczba_krokow > 1023 && liczba_krokow <= 1279)
     {
         liczba_krokow = liczba_krokow - 1023;
+        unsigned char ilosc = (unsigned char)liczba_krokow;
 
         for(int i = 0; i< 4; i++){
-            fprintf(&kierunek, 1,1, bin);
-            fprintf(&max,1,1,bin);
+            fwrite(&kierunek, 1,1, bin);
+            fwrite(&max,1,1,bin);
         }
 
-        fprintf(&kierunek, 1,1, bin);
-        fprintf(&liczba_krokow,1,1,bin);
+        fwrite(&kierunek, 1,1, bin);
+        fwrite(&liczba_krokow,1,1,bin);
     }else if (liczba_krokow > 1279 && liczba_krokow <= 1535)
     {
         liczba_krokow = liczba_krokow - 1279;
+        unsigned char ilosc = (unsigned char)liczba_krokow;
 
         for(int i = 0; i< 5; i++){
-            fprintf(&kierunek, 1,1, bin);
-            fprintf(&max,1,1,bin);
+            fwrite(&kierunek, 1,1, bin);
+            fwrite(&max,1,1,bin);
         }
 
-        fprintf(&kierunek, 1,1, bin);
-        fprintf(&liczba_krokow,1,1,bin);
+        fwrite(&kierunek, 1,1, bin);
+        fwrite(&liczba_krokow,1,1,bin);
     }else if (liczba_krokow > 1535 && liczba_krokow <= 1791)
     {
         liczba_krokow = liczba_krokow - 1535;
+        unsigned char ilosc = (unsigned char)liczba_krokow;
 
         for(int i = 0; i< 6; i++){
-            fprintf(&kierunek, 1,1, bin);
-            fprintf(&max,1,1,bin);
+            fwrite(&kierunek, 1,1, bin);
+            fwrite(&max,1,1,bin);
         }
 
-        fprintf(&kierunek, 1,1, bin);
-        fprintf(&liczba_krokow,1,1,bin);
+        fwrite(&kierunek, 1,1, bin);
+        fwrite(&liczba_krokow,1,1,bin);
     }else if (liczba_krokow > 1791 && liczba_krokow <= 2049)
     {
         liczba_krokow = liczba_krokow - 1791;
+        unsigned char ilosc = (unsigned char)liczba_krokow;
 
         for(int i = 0; i< 7; i++){
-            fprintf(&kierunek, 1,1, bin);
-            fprintf(&max,1,1,bin);
+            fwrite(&kierunek, 1,1, bin);
+            fwrite(&max,1,1,bin);
         }
 
-        fprintf(&kierunek, 1,1, bin);
-        fprintf(&liczba_krokow,1,1,bin);
+        fwrite(&kierunek, 1,1, bin);
+        fwrite(&liczba_krokow,1,1,bin);
     }
 
 
