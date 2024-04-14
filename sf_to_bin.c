@@ -7,7 +7,7 @@ void wpisz_slowo(FILE *bin, short ile, char jaki, char sep)
     fwrite(&ile,1,1,bin);
 }
 
-FILE *StworzBin(FILE *sf, int szerokosc, int wysokosc, int start_x, int start_y, int koniec_x, int koniec_y, int solu_offset)
+FILE *StworzBin(FILE *sf, int szerokosc, int wysokosc, int start_x, int start_y, int koniec_x, int koniec_y)
 {
     FILE *bin = fopen("nowy.bin", "wb");
 
@@ -37,7 +37,7 @@ FILE *StworzBin(FILE *sf, int szerokosc, int wysokosc, int start_x, int start_y,
         fwrite(&puste, 1,1,bin); // przestrzen zarezwerowoana + miejsce na COUNTER
     }
 
-    int offset = solu_offset;
+    int offset = 0;
     fwrite(&offset, 4, 1, bin);
 
     char SEPARATOR = '#';//HARD_code cz2
@@ -86,8 +86,15 @@ FILE *StworzBin(FILE *sf, int szerokosc, int wysokosc, int start_x, int start_y,
     wpisz_slowo(bin,counter,poprz_symb, SEPARATOR);
     ilosc_slow++;
 
+    fseek(bin , 0 , SEEK_END);
+    long pozycja = ftell(bin);
+
+    offset = (int)pozycja;
+
     fseek(bin, 29, SEEK_SET);
     fwrite(&ilosc_slow, 4,1,bin);
+
+    fwrite(&pozycja, 4, 1, bin); 
 
     if(bin == NULL)
     {
@@ -98,9 +105,9 @@ FILE *StworzBin(FILE *sf, int szerokosc, int wysokosc, int start_x, int start_y,
     return bin;
 }
 
-/*
 
-Maly test dla labiryntu 21x21 (znaczy 10x10 z generatora)
+
+//Maly test dla labiryntu 21x21 (znaczy 10x10 z generatora)
 
 int main(int argc, char *argv[])
 {
@@ -110,8 +117,8 @@ int main(int argc, char *argv[])
         return 1;
     }
 
-    FILE *bin = StworzBin(file, 21 , 21 , 1 , 2, 21, 20, 0);
+    FILE *bin = StworzBin(file, 21 , 21 , 1 , 2, 21, 20);
 
     return 0;
 
-}*/
+}
