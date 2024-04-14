@@ -40,7 +40,7 @@ int sprawdz_wysokosc(char *nazwa_pliku){
 
 
 void znajdz_konce(char *nazwa_pliku, int szerokosc, int wysokosc, int *start_x, int *start_y, int *koniec_x, int *koniec_y){
-    FILE *plik = fopen(nazwa_pliku, "r");
+    FILE *plik = fopen(nazwa_pliku, "a+");
     if (plik == NULL){
         printf("Nie udało się otworzyć pliku\n");
         return;

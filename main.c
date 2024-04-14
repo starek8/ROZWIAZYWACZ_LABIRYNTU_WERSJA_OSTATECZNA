@@ -27,6 +27,7 @@ int main (int argc, char *argv[]) {
     }
 
     FILE *bin_do_oddania;
+    FILE* working_copy;
 
     //zmienne potrzebne do działania
     int szerokosc = 0;
@@ -43,7 +44,7 @@ int main (int argc, char *argv[]) {
 
          //krok 1 stowrzenie working copy
         
-        FILE *working_copy = StworzSf(file);
+        working_copy = StworzSf(file);
         // krok 2 wyciagniecie informacji
         szerokosc = sprawdz_szerokosc("sf.txt");
         wysokosc = sprawdz_wysokosc("sf.txt");
