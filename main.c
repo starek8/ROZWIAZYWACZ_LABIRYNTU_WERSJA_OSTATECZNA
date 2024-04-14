@@ -4,6 +4,7 @@
 #include <time.h>
 #include "kopier.h"
 #include "SFinfo.h"
+#include "flooder.h"
 
 int main (int argc, char *argv[]) {
 
@@ -35,6 +36,7 @@ int main (int argc, char *argv[]) {
     if(strcmp(argv[1] + strlen(argv[1]) - 3, "bin") == 0){
         printf("Typ pliku żródłowego: bin\n");
         // tu idzie kod dla bin
+        
     } else if(strcmp(argv[1] + strlen(argv[1]) - 3, "txt") == 0){
         printf("Typ pliku żródłowego: txt\n");
         // tu idzie kod dla txt
@@ -62,10 +64,13 @@ int main (int argc, char *argv[]) {
     }
 
     //rozwiązanie labiryntu
+
+    flooder(szerokosc, wysokosc, start_x, start_y, koniec_x, koniec_y);
+
     
 
 
-    remove("working_copy.txt");
+    //remove("working_copy.txt");
     printf ("Czas wykonania: %f\n", ((double)clock() - start) / CLOCKS_PER_SEC);
     return 0;
 }
