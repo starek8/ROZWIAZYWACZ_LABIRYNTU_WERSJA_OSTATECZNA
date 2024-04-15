@@ -1,10 +1,24 @@
 #include "bin_to_sf.h"
 
+void wstaw_PK(FILE* file, FILE *bin)
+{
+    fseek(bin, 0, SEEK_SET);
+    struct info_lab header;
+    fread(&header, 40, 1, bin);
+
+    int ile = (header.columns+1)*(header.entryy - 1) + header.entryx;
+    fseek(file, ile, SEEK_SET);
+    fputc('P', file);
+    int ile2 = (header.columns+2)*(header.exity -1) + header.exitx- 1;
+    fseek(file, ile2, SEEK_SET);
+    fputc('K', file);
+
+}
+
 FILE *StworzSf(FILE* file)
 {
     struct info_lab header;
     fread(&header, 40, 1, file);
-
 
     int liczba_slow = header.counter;
 

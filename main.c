@@ -45,13 +45,14 @@ int main (int argc, char *argv[]) {
          //krok 1 stowrzenie working copy
         
         working_copy = StworzSf(file);
+
+        wstaw_PK(working_copy, file);
+        flocse(working_copy);
         // krok 2 wyciagniecie informacji
-        szerokosc = sprawdz_szerokosc("working_copy.txt");
-        wysokosc = sprawdz_wysokosc("working_copy.txt");
+
 
         printf("Szerokość: %d\nWysokość: %d\n", szerokosc, wysokosc);
 
-        znajdz_konce("sf.txt", szerokosc, wysokosc, &start_x, &start_y, &koniec_x, &koniec_y);
 
         printf("Start: %d %d\n", start_x, start_y);
         printf("Koniec: %d %d\n", koniec_x, koniec_y);

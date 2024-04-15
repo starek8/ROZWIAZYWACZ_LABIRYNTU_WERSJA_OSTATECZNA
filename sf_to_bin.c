@@ -117,7 +117,7 @@ FILE *StworzBin(FILE *sf, int szerokosc, int wysokosc, int start_x, int start_y,
         return 1;
     }
 
-    FILE *bin = StworzBin(file, 21 , 21 , 1 , 2, 21, 20);
+    FILE *bin = StworzBin(file, 81 , 81 , 1 , 2, 81, 80);
 
     return 0;
 
