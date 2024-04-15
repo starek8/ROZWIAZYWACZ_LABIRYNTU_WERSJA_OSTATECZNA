@@ -19,7 +19,7 @@ FILE *StworzSf(FILE* file)
 
     int counter = 0;
 
-    FILE* sf = fopen("sf.txt", "w");
+    FILE* sf = fopen("working_copy.txt", "w");
 
     for(int i = 0; i < liczba_slow; i++)
     {

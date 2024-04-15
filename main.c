@@ -46,8 +46,8 @@ int main (int argc, char *argv[]) {
         
         working_copy = StworzSf(file);
         // krok 2 wyciagniecie informacji
-        szerokosc = sprawdz_szerokosc("sf.txt");
-        wysokosc = sprawdz_wysokosc("sf.txt");
+        szerokosc = sprawdz_szerokosc("working_copy.txt");
+        wysokosc = sprawdz_wysokosc("working_copy.txt");
 
         printf("Szerokość: %d\nWysokość: %d\n", szerokosc, wysokosc);
 
@@ -86,12 +86,13 @@ int main (int argc, char *argv[]) {
     }
 
     //rozwiązanie labiryntu
-
+    printf("Rozpoczęto zalewanie\n");
     flooder(szerokosc, wysokosc, start_x, start_y, koniec_x, koniec_y);
-
+    printf("Zakończono zalewanie\n");
     follower(bin_do_oddania, szerokosc, wysokosc, start_x, start_y, koniec_x, koniec_y);
+    printf("Zakończono śledzenie\n");
 
-
+    //remove("working_copy.txt");
     printf ("Czas wykonania: %f\n", ((double)clock() - start) / CLOCKS_PER_SEC);
     return 0;
 
