@@ -2,6 +2,8 @@
 
 FILE *StworzSf(FILE* file)
 {
+
+
     struct info_lab header;
     fread(&header, 40, 1, file);
 
@@ -60,7 +62,7 @@ int main(int argc, char *argv[])
         }
 
         FILE *out = StworzSf(file);
-}
+}*/
 
-Funkcja testująca oddaje plik sf :)
-*/
+
+
