@@ -8,6 +8,6 @@ void rozpocznij_zapis_w_bin(FILE *bin);
 
 void zapisz_krok(FILE *bin, char kierunek, int liczba_krokow); // przyjmuje otwarty plik !!
 
-void zapisz_steps(FILE *bin, int steps);
+void zapisz_steps(FILE *bin, int steps, long pozycja);
 
 #endif

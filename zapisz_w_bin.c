@@ -9,13 +9,11 @@ void rozpocznij_zapis_w_bin(FILE *bin)
     fwrite(&ste, 1, 1, bin); //miejce na counter 
 }
 
-void zapisz_steps(FILE *bin, int steps)
+void zapisz_steps(FILE *bin, int steps, long pozycja)
 {
     unsigned char ste = steps;
 
-    int step = (-2)* steps -1;
-
-    fseek(bin, step, SEEK_END);
+    fseek(bin, pozycja, SEEK_SET);
     
     fwrite(&ste, 1,1,bin);
 
@@ -133,6 +131,7 @@ void zapisz_krok(FILE *bin, char kierunek, int liczba_krokow)
     }
 
    rozpocznij_zapis_w_bin(bin);
+   long pozycja =ftell(bin);
 
     zapisz_krok(bin, 'N', 30);
 
@@ -140,7 +139,7 @@ void zapisz_krok(FILE *bin, char kierunek, int liczba_krokow)
 
     zapisz_krok(bin, 'W', 530);
 
-    zapisz_steps(bin, 6);
+    zapisz_steps(bin, 30,pozycja-1);
 
     return 0;
 }*/
