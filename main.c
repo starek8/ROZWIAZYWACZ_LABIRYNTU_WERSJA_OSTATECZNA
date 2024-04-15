@@ -45,6 +45,7 @@ int main (int argc, char *argv[]) {
          //krok 1 stowrzenie working copy
         
         working_copy = StworzSf(file);
+
         // krok 2 wyciagniecie informacji
         szerokosc = sprawdz_szerokosc("working_copy.txt");
         wysokosc = sprawdz_wysokosc("working_copy.txt");
