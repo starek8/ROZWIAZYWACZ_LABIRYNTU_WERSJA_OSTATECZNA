@@ -1,11 +1,20 @@
 #include "zapisz_w_bin.h"
 
-void rozpocznij_zapis_w_bin(FILE *bin)
+void rozpocznij_zapis_w_nowym_bin(FILE *bin)
 {
     fseek(bin, 0, SEEK_END);
     int FILE_ID = 0x52524243; //hard-code file_id
     char ste = 0;
     fwrite(&FILE_ID, 4, 1, bin);
+    fwrite(&ste, 1, 1, bin); //miejce na counter 
+}
+
+void rozpocznij_zapis_w_bin(FILE *bin)
+{
+    fseek(bin, 0, SEEK_END);
+    int FILE_ID = 0x52524243; //hard-code file_id
+    char ste = 0;
+    //fwrite(&FILE_ID, 4, 1, bin);
     fwrite(&ste, 1, 1, bin); //miejce na counter 
 }
 

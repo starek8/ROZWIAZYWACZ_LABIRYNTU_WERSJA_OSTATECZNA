@@ -20,7 +20,7 @@ int main (int argc, char *argv[]) {
         return 1;
     }
 
-    FILE *file = fopen(argv[1], "rb");
+    FILE *file = fopen(argv[1], "r+b");
     if (file == NULL) {
         printf("Nie udało się otworzyć pliku!\nKoniec działania programu\n");
         return 1;
@@ -90,7 +90,7 @@ int main (int argc, char *argv[]) {
         printf("Rozpoczęto zalewanie\n");
         flooder(szerokosc, wysokosc, start_x, start_y, koniec_x, koniec_y);
         printf("Zakończono zalewanie\n");
-        follower(bin_do_oddania, szerokosc, wysokosc, start_x, start_y, koniec_x, koniec_y);
+        follower_nowy(bin_do_oddania, szerokosc, wysokosc, start_x, start_y, koniec_x, koniec_y);
         printf("Zakończono śledzenie\n");
 
         
@@ -102,7 +102,7 @@ int main (int argc, char *argv[]) {
     //rozwiązanie labiryntu
     
 
-    remove("working_copy.txt");
+    //remove("working_copy.txt");
     printf ("Czas wykonania: %f\n", ((double)clock() - start) / CLOCKS_PER_SEC);
     return 0;
 

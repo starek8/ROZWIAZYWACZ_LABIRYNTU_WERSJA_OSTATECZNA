@@ -3,5 +3,7 @@
 
 void follower (FILE *bin, int szerokosc, int wysokosc, int start_x, int start_y, int koniec_x, int koniec_y);
 
+void follower_nowy (FILE *bin, int szerokosc, int wysokosc, int start_x, int start_y, int koniec_x, int koniec_y);
+
 
 #endif 

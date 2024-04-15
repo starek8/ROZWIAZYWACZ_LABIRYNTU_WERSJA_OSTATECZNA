@@ -4,3 +4,4 @@
 *.bin
 massif.*
 .vscode/
+*.tmp
