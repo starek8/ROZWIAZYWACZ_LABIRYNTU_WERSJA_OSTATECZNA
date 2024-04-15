@@ -14,6 +14,7 @@ void follower(FILE* bin, int szerokosc, int wysokosc, int start_x, int start_y, 
 
     int steps = -1;
     rozpocznij_zapis_w_bin(bin);
+    long pozycja = ftell(bin);
     int licznik_krokow = 0;
     char kierunek = 'N'; // N - północ, S - południe, W - zachód, E - wschód
     int x = start_x;
@@ -130,7 +131,7 @@ void follower(FILE* bin, int szerokosc, int wysokosc, int start_x, int start_y, 
     zapisz_krok(bin, kierunek, licznik_krokow);
     steps++;
 
-    zapisz_steps(bin, steps); 
+    zapisz_steps(bin, steps, pozycja -1); 
     
     free(tab);  
 }
