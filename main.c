@@ -47,7 +47,7 @@ int main (int argc, char *argv[]) {
         working_copy = StworzSf(file);
 
         wstaw_PK(working_copy, file);
-        flocse(working_copy);
+        fclose(working_copy);
 
         // krok 2 wyciagniecie informacji
 
@@ -57,7 +57,6 @@ int main (int argc, char *argv[]) {
 
         printf("Start: %d %d\n", start_x, start_y);
         printf("Koniec: %d %d\n", koniec_x, koniec_y);
-
         
     } else if(strcmp(argv[1] + strlen(argv[1]) - 3, "txt") == 0){
         printf("Typ pliku żródłowego: txt\n");
