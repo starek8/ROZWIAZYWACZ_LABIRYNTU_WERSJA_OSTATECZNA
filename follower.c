@@ -12,7 +12,7 @@ void follower(FILE* bin, int szerokosc, int wysokosc, int start_x, int start_y, 
         tab[i] = (char *)malloc(3 * sizeof(char));
     }
 
-    int steps = 0;
+    int steps = -1;
 
     rozpocznij_zapis_w_bin(bin);
 
@@ -132,7 +132,7 @@ void follower(FILE* bin, int szerokosc, int wysokosc, int start_x, int start_y, 
     zapisz_krok(bin, kierunek, licznik_krokow);
     steps++;
 
-    zapisz_steps(bin, steps);
+    zapisz_steps(bin, steps); 
     
     free(tab);  
 }
