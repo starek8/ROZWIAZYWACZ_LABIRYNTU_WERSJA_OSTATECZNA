@@ -48,6 +48,7 @@ int main (int argc, char *argv[]) {
 
         wstaw_PK(working_copy, file);
         flocse(working_copy);
+
         // krok 2 wyciagniecie informacji
 
 
