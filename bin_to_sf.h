@@ -21,6 +21,8 @@ struct info_lab{
     char path;
 } __attribute__((packed)); 
 
+void wstaw_PK(FILE* file, FILE *bin);
+
 FILE *StworzSf(FILE* file);
 
 #endif
