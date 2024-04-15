@@ -102,7 +102,7 @@ int main (int argc, char *argv[]) {
     //rozwiązanie labiryntu
     
 
-    //remove("working_copy.txt");
+    remove("working_copy.txt");
     printf ("Czas wykonania: %f\n", ((double)clock() - start) / CLOCKS_PER_SEC);
     return 0;
 
