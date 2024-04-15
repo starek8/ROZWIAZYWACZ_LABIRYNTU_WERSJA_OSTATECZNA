@@ -108,7 +108,7 @@ FILE *StworzBin(FILE *sf, int szerokosc, int wysokosc, int start_x, int start_y,
 
 
 //Maly test dla labiryntu 21x21 (znaczy 10x10 z generatora)
-
+/*
 int main(int argc, char *argv[])
 {
     FILE *file = fopen(argv[1], "r");
@@ -121,4 +121,4 @@ int main(int argc, char *argv[])
 
     return 0;
 
-}
+}*/

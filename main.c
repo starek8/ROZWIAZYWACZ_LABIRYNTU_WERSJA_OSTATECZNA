@@ -50,13 +50,20 @@ int main (int argc, char *argv[]) {
         fclose(working_copy);
 
         // krok 2 wyciagniecie informacji
-
+        szerokosc = sprawdz_szerokosc("working_copy.txt");
+        wysokosc = sprawdz_wysokosc("working_copy.txt");
+        znajdz_konce("working_copy.txt", szerokosc, wysokosc, &start_x, &start_y, &koniec_x, &koniec_y);
 
         printf("Szerokość: %d\nWysokość: %d\n", szerokosc, wysokosc);
 
-
         printf("Start: %d %d\n", start_x, start_y);
         printf("Koniec: %d %d\n", koniec_x, koniec_y);
+
+        printf("Rozpoczęto zalewanie\n");
+        flooder(szerokosc, wysokosc, start_x, start_y, koniec_x, koniec_y);
+        printf("Zakończono zalewanie\n");
+        follower(file, szerokosc, wysokosc, start_x, start_y, koniec_x, koniec_y);
+        printf("Zakończono śledzenie\n");
         
     } else if(strcmp(argv[1] + strlen(argv[1]) - 3, "txt") == 0){
         printf("Typ pliku żródłowego: txt\n");
@@ -80,6 +87,12 @@ int main (int argc, char *argv[]) {
 
         bin_do_oddania = StworzBin(file, szerokosc, wysokosc, start_x, start_y, koniec_x, koniec_y); 
 
+        printf("Rozpoczęto zalewanie\n");
+        flooder(szerokosc, wysokosc, start_x, start_y, koniec_x, koniec_y);
+        printf("Zakończono zalewanie\n");
+        follower(bin_do_oddania, szerokosc, wysokosc, start_x, start_y, koniec_x, koniec_y);
+        printf("Zakończono śledzenie\n");
+
         
     } else {
         printf("Nieobsługiwany plik!\nKoniec działania programu\n");
@@ -87,13 +100,9 @@ int main (int argc, char *argv[]) {
     }
 
     //rozwiązanie labiryntu
-    printf("Rozpoczęto zalewanie\n");
-    flooder(szerokosc, wysokosc, start_x, start_y, koniec_x, koniec_y);
-    printf("Zakończono zalewanie\n");
-    follower(bin_do_oddania, szerokosc, wysokosc, start_x, start_y, koniec_x, koniec_y);
-    printf("Zakończono śledzenie\n");
+    
 
-    //remove("working_copy.txt");
+    remove("working_copy.txt");
     printf ("Czas wykonania: %f\n", ((double)clock() - start) / CLOCKS_PER_SEC);
     return 0;
 

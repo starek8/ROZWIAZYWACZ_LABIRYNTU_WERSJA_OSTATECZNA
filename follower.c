@@ -13,9 +13,7 @@ void follower(FILE* bin, int szerokosc, int wysokosc, int start_x, int start_y, 
     }
 
     int steps = -1;
-
     rozpocznij_zapis_w_bin(bin);
-
     int licznik_krokow = 0;
     char kierunek = 'N'; // N - północ, S - południe, W - zachód, E - wschód
     int x = start_x;
